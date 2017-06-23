@@ -10,6 +10,8 @@ RUN \
   apk add --update git go make gcc musl-dev linux-headers && \
   (cd go-ethereum && make all)
 
-FROM bash
+FROM ubuntu
 
 COPY --from=build /go-ethereum/build/bin/* /usr/local/bin/
+
+CMD ["/bin/bash"]
