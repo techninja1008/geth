@@ -22,25 +22,40 @@ if [ ! -f /data/init ]; then
       "parentHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",
       "timestamp"  : "0x00"
     }
-    EOF
+EOF
     mkdir -p /data/chain
     geth --datadir="/data/chain" -verbosity 6 --ipcdisable --rpcport 8101 init /data/genesis.json
+    touch /data/init
 fi
 
 case $command in
 bootnodegen)
   bootnode -genkey /bootnodegen.key -writeaddress > /dev/null
   cat /bootnodegen.key
+  ;;
 bootnode)
+  echo "-------------------------------"
+  echo "--     Starting Bootnode     --"
+  echo "-------------------------------"
   exec bootnode -nodekeyhex $1
+  ;;
 geth)
+  echo "-------------------------------"
+  echo "--       Starting Geth       --"
+  echo "-------------------------------"
   exec geth --bootnodes="$BOOTNODES" --datadir="/data/chain" -verbosity 6 --ipcdisable --rpcport 8101 "$@"
+  ;;
 mine)
+  echo "-------------------------------"
+  echo "--      Starting Miner       --"
+  echo "-------------------------------"
   etherbase=$1
   shift
   threads=${1:-1}
   shift
   exec geth --bootnodes="$BOOTNODES" --datadir="/data/chain" -verbosity 6 --ipcdisable --rpcport 8101 --mine --minerthreads=$threads --etherbase=$etherbase "$@"
+  ;;
 *)
   exec $command "$@"
+  ;;
 esac
