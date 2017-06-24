@@ -7,7 +7,7 @@ if [ ! -f /data/init ]; then
     cat <<- EOF > /data/genesis.json
     {
       "config": {
-            "chainId": 0,
+            "chainId": 31,
             "homesteadBlock": 0,
             "eip155Block": 0,
             "eip158Block": 0
