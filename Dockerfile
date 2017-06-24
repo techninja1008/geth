@@ -9,7 +9,7 @@ COPY --from=scm /data/go-ethereum /go-ethereum
 RUN \
   apk add --update git go make gcc musl-dev linux-headers && \
   (cd go-ethereum && make all)                            && \
-  cp go-ethereum/build/bin/geth /usr/local/bin/           && \
+  cp go-ethereum/build/bin/* /usr/local/bin/              && \
   apk del git go make gcc musl-dev linux-headers          && \
   rm -rf /go-ethereum && rm -rf /var/cache/apk/*
 
