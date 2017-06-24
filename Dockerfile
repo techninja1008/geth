@@ -17,4 +17,11 @@ EXPOSE 8545
 EXPOSE 30303
 EXPOSE 30303/udp
 
-CMD ["/bin/bash"]
+ADD entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+
+VOLUME /data
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["geth"]
