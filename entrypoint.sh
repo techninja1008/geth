@@ -25,6 +25,7 @@ if [ ! -f /data/init ]; then
 EOF
     mkdir -p /data/chain
     geth --datadir="/data/chain" -verbosity 6 --ipcdisable --rpcport 8101 init /data/genesis.json
+    echo $STATIC_NODES > /data/chain/static-nodes.json
     touch /data/init
 fi
 
