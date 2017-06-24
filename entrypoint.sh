@@ -37,7 +37,9 @@ bootnode)
   echo "-------------------------------"
   echo "--     Starting Bootnode     --"
   echo "-------------------------------"
-  exec bootnode -nodekeyhex $1
+  hexkey=$1
+  shift
+  exec bootnode -nodekeyhex $hexkey "$@"
   ;;
 geth)
   echo "-------------------------------"
