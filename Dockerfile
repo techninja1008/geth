@@ -17,4 +17,4 @@ EXPOSE 8545
 EXPOSE 30303
 EXPOSE 30303/udp
 
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
