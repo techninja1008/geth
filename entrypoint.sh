@@ -4,7 +4,7 @@ command=$1
 shift
 
 if [ ! -f /data/init ]; then
-    cat <<-EOF > /data/genesis.json
+    cat <<- EOF > /data/genesis.json
     {
       "config": {
             "chainId": 0,
